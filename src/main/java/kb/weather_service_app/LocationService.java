@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class LocationService {
     private final LocationRepository locationRepository;
+
     Location createLocation(String city, String region, String country, Double latitude, Double longitude) {
         Location location = new Location();
         location.setCity(city);
