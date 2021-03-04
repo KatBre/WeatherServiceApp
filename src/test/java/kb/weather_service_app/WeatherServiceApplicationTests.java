@@ -8,6 +8,6 @@ class WeatherServiceApplicationTests {
 
     @Test
     void contextLoads() {
+        // todo we need tests
     }
-
 }

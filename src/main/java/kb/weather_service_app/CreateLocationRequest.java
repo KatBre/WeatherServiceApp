@@ -1,4 +1,4 @@
-package kb.weather_service_app;
+package kb.weather_service_app; // todo you can move it to new package eg. location
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

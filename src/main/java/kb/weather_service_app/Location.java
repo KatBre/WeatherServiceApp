@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // todo you can try to use UUID instead of long
     private String city;
     private String region;
     private String country;

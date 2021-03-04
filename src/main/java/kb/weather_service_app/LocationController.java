@@ -17,6 +17,9 @@ public class LocationController {
         String country = request.getCountry();
         Double latitude = request.getLatitude();
         Double longitude = request.getLongitude();
+
+        // todo use LocationService
+        // todo create new class for mapping Location -> NewLocationResponse (mapper class)
         NewLocationResponse responseBody = new NewLocationResponse(city, region, country, latitude, longitude);
 
         return ResponseEntity.status(201).body(responseBody);
