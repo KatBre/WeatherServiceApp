@@ -1,4 +1,4 @@
-package kb.weather_service_app;
+package kb.weather.location;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

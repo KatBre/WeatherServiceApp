@@ -1,4 +1,4 @@
-package kb.weather_service_app;
+package kb.weather.location;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -10,17 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class LocationController {
 
+    private final LocationMapper locationMapper;
+    private final LocationService locationService;
+
     @PostMapping("/location")
     ResponseEntity<NewLocationResponse> postLocation(@RequestBody CreateLocationRequest request) {
-        String city = request.getCity();
-        String region = request.getRegion();
-        String country = request.getCountry();
-        Double latitude = request.getLatitude();
-        Double longitude = request.getLongitude();
+        Location location = locationService.createLocation(
+                request.getCity(),
+                request.getRegion(),
+                request.getCountry(),
+                request.getLatitude(),
+                request.getLongitude());
 
-        // todo use LocationService
-        // todo create new class for mapping Location -> NewLocationResponse (mapper class)
-        NewLocationResponse responseBody = new NewLocationResponse(city, region, country, latitude, longitude);
+        NewLocationResponse responseBody = locationMapper.mapLocationToNewLocationResponse(locationService, location);
 
         return ResponseEntity.status(201).body(responseBody);
     }

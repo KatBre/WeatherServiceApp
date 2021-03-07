@@ -1,4 +1,4 @@
-package kb.weather_service_app; // todo rename to kb.weather (don't use snake case to name packages)
+package kb.weather;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

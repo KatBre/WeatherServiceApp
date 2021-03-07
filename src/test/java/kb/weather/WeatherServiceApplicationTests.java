@@ -1,4 +1,4 @@
-package kb.weather_service_app;
+package kb.weather;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
