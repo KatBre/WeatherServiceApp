@@ -1,6 +1,7 @@
 package kb.weather.location;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class LocationController {
 
-    private final LocationMapper locationMapper;
     private final LocationService locationService;
+    private final LocationMapper locationMapper;
 
     @PostMapping("/location")
     ResponseEntity<NewLocationResponse> postLocation(@RequestBody CreateLocationRequest request) {
@@ -22,8 +23,8 @@ public class LocationController {
                 request.getLatitude(),
                 request.getLongitude());
 
-        NewLocationResponse responseBody = locationMapper.mapLocationToNewLocationResponse(locationService, location);
+        NewLocationResponse responseBody = locationMapper.mapLocationToNewLocationResponse(location);
 
-        return ResponseEntity.status(201).body(responseBody);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
     }
 }

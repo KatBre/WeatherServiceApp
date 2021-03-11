@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class NewLocationResponse {
-    private String uuid;
+    private String id;
     private String city;
     private String region;
     private String country;

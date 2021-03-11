@@ -3,6 +3,7 @@ package kb.weather.location;
 import kb.weather.exceptions.EmptyInputException;
 import kb.weather.exceptions.ValueOutOfRangeException;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,20 +17,20 @@ public class LocationService {
     private final LocationRepository locationRepository;
 
     Location createLocation(String city, String region, String country, Double latitude, Double longitude) {
-        if (city.isEmpty()) {
-            throw new EmptyInputException("Empty value not accepted");
+        if (StringUtils.isBlank(city)) {
+            throw new EmptyInputException("Empty city not accepted");
         }
-        if (region.equals(" ")) {
+        if (StringUtils.isBlank(region)) {
             region = null;
         }
-        if (country.isEmpty()) {
-            throw new EmptyInputException("Empty value not accepted");
+        if (StringUtils.isBlank(country)) {
+            throw new EmptyInputException("Empty country not accepted");
         }
         if (latitude < SOUTH_LIMIT || latitude > NORTH_LIMIT) {
-            throw new ValueOutOfRangeException("Value out of range");
+            throw new ValueOutOfRangeException("Latitude out of range. Accepted value within the range -90 to 90.");
         }
         if (longitude < WEST_LIMIT || longitude > EAST_LIMIT) {
-            throw new ValueOutOfRangeException("Value out of range");
+            throw new ValueOutOfRangeException("Longitude out of range. Accepted value within the range -180 to 180.");
         }
 
         Location location = new Location();

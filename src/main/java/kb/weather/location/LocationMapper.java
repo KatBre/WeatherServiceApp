@@ -1,16 +1,17 @@
 package kb.weather.location;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class LocationMapper {
-    NewLocationResponse mapLocationToNewLocationResponse(LocationService locationService, Location location){
+    NewLocationResponse mapLocationToNewLocationResponse(Location location) {
         return NewLocationResponse.builder()
-                .uuid(location.getUuid())
-                .city(location.getUuid())
+                .id(location.getId())
+                .city(location.getCity())
                 .region(location.getRegion())
                 .country(location.getCountry())
                 .latitude(location.getLatitude())
                 .longitude(location.getLongitude())
                 .build();
-
     }
-
 }
