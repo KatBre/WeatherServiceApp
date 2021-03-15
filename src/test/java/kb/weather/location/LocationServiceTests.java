@@ -3,8 +3,10 @@ package kb.weather.location;
 import kb.weather.exceptions.EmptyInputException;
 import kb.weather.exceptions.ValueOutOfRangeException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,6 +14,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class LocationServiceTests {
     @Mock
     LocationRepository locationRepository;
@@ -138,7 +141,7 @@ public class LocationServiceTests {
 
         //then
         assertThat(location.getCity()).isEqualTo("Gdynia");
-        assertThat(location.getRegion()).isEqualTo(null);
+        assertThat(location.getRegion()).isEqualTo(" ");
         assertThat(location.getCountry()).isEqualTo("Poland");
         assertThat(location.getLatitude()).isEqualTo(54.5);
         assertThat(location.getLongitude()).isEqualTo(18.5);

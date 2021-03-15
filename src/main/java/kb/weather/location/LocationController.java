@@ -23,8 +23,7 @@ public class LocationController {
                 request.getLatitude(),
                 request.getLongitude());
 
-        NewLocationResponse responseBody = locationMapper.mapLocationToNewLocationResponse(location);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(locationMapper.mapLocationToNewLocationResponse(location));
     }
 }

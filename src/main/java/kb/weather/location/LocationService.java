@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+import java.util.function.Predicate;
+
 @Component
 @RequiredArgsConstructor
 public class LocationService {
@@ -20,9 +23,6 @@ public class LocationService {
         if (StringUtils.isBlank(city)) {
             throw new EmptyInputException("Empty city not accepted");
         }
-        if (StringUtils.isBlank(region)) {
-            region = null;
-        }
         if (StringUtils.isBlank(country)) {
             throw new EmptyInputException("Empty country not accepted");
         }
@@ -35,7 +35,7 @@ public class LocationService {
 
         Location location = new Location();
         location.setCity(city);
-        location.setRegion(region);
+        Optional.ofNullable(region).filter(Predicate.not(String::isBlank)).ifPresent(location::setRegion);
         location.setCountry(country);
         location.setLatitude(latitude);
         location.setLongitude(longitude);
