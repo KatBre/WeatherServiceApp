@@ -1,7 +1,5 @@
 package kb.weather.location;
 
-import kb.weather.exceptions.EmptyInputException;
-import kb.weather.exceptions.ValueOutOfRangeException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -43,86 +41,6 @@ public class LocationServiceTests {
         assertThat(location.getLatitude()).isEqualTo(54.5);
         assertThat(location.getLongitude()).isEqualTo(18.5);
         verify(locationRepository).save(any());
-    }
-
-    @Test
-    void createLocation_whenCityIsEmpty_throwsEmptyInputException() {
-        //when
-        Throwable exception = catchThrowable(() -> locationService.createLocation("", "pomeranian", "Poland", 54.5, 18.5));
-
-        //then
-        assertThat(exception).isInstanceOf(EmptyInputException.class);
-        verify(locationRepository, times(0)).save(any());
-    }
-
-    @Test
-    void createLocation_whenCityIsNull_throwsEmptyInputException() {
-        //when
-        Throwable exception = catchThrowable(() -> locationService.createLocation(null, "pomeranian", "Poland", 54.5, 18.5));
-
-        //then
-        assertThat(exception).isInstanceOf(EmptyInputException.class);
-        verify(locationRepository, times(0)).save(any());
-    }
-
-    @Test
-    void createLocation_whenCountryIsEmpty_throwsEmptyInputException() {
-        //when
-        Throwable exception = catchThrowable(() -> locationService.createLocation("Gdynia", "pomeranian", "", 54.5, 18.5));
-
-        //then
-        assertThat(exception).isInstanceOf(EmptyInputException.class);
-        verify(locationRepository, times(0)).save(any());
-    }
-
-    @Test
-    void createLocation_whenCountryIsNull_throwsEmptyInputException() {
-        //when
-        Throwable exception = catchThrowable(() -> locationService.createLocation("Gdynia", "pomeranian", null, 54.5, 18.5));
-
-        //then
-        assertThat(exception).isInstanceOf(EmptyInputException.class);
-        verify(locationRepository, times(0)).save(any());
-    }
-
-    @Test
-    void createLocation_whenLatitudeIsHigherThenLimit_throwsValueOutOfRangeException() {
-        //when
-        Throwable exception = catchThrowable(() -> locationService.createLocation("Gdynia", "pomeranian", "Poland", 100.5, 18.5));
-
-        //then
-        assertThat(exception).isInstanceOf(ValueOutOfRangeException.class);
-        verify(locationRepository, times(0)).save(any());
-    }
-
-    @Test
-    void createLocation_whenLatitudeIsLowerThenLimit_throwsValueOutOfRangeException() {
-        //when
-        Throwable exception = catchThrowable(() -> locationService.createLocation("Gdynia", "pomeranian", "Poland", -100.5, 18.5));
-
-        //then
-        assertThat(exception).isInstanceOf(ValueOutOfRangeException.class);
-        verify(locationRepository, times(0)).save(any());
-    }
-
-    @Test
-    void createLocation_whenLongitudeIsHigherThenLimit_throwsValueOutOfRangeException() {
-        //when
-        Throwable exception = catchThrowable(() -> locationService.createLocation("Gdynia", "pomeranian", "Poland", 54.5, 200.5));
-
-        //then
-        assertThat(exception).isInstanceOf(ValueOutOfRangeException.class);
-        verify(locationRepository, times(0)).save(any());
-    }
-
-    @Test
-    void createLocation_whenLongitudeIsLowerThenLimit_throwsValueOutOfRangeException() {
-        //when
-        Throwable exception = catchThrowable(() -> locationService.createLocation("Gdynia", "pomeranian", "Poland", 54.5, -200.5));
-
-        //then
-        assertThat(exception).isInstanceOf(ValueOutOfRangeException.class);
-        verify(locationRepository, times(0)).save(any());
     }
 
     @Test
