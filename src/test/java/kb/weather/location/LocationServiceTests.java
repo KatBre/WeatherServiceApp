@@ -88,5 +88,4 @@ public class LocationServiceTests {
         assertThat(location.getLongitude()).isEqualTo(18.5);
         verify(locationRepository).save(any());
     }
-
 }
