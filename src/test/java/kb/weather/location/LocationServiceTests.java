@@ -2,10 +2,14 @@ package kb.weather.location;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+
+import javax.lang.model.util.Types;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
@@ -18,6 +22,8 @@ public class LocationServiceTests {
     LocationRepository locationRepository;
     @InjectMocks
     LocationService locationService;
+    @Captor
+    ArgumentCaptor<Location> locationArgumentCaptor;
 
     @Test
     void createLocation_createsNewLocation() {
@@ -35,6 +41,7 @@ public class LocationServiceTests {
         Location location = locationService.createLocation("Gdynia", "pomeranian", "Poland", 54.5, 18.5);
 
         //then
+        verify(locationRepository).save(locationArgumentCaptor.capture());
         assertThat(location.getCity()).isEqualTo("Gdynia");
         assertThat(location.getRegion()).isEqualTo("pomeranian");
         assertThat(location.getCountry()).isEqualTo("Poland");
@@ -58,6 +65,7 @@ public class LocationServiceTests {
         Location location = locationService.createLocation("Gdynia", " ", "Poland", 54.5, 18.5);
 
         //then
+
         assertThat(location.getCity()).isEqualTo("Gdynia");
         assertThat(location.getRegion()).isEqualTo(" ");
         assertThat(location.getCountry()).isEqualTo("Poland");
@@ -81,6 +89,7 @@ public class LocationServiceTests {
         Location location = locationService.createLocation("Gdynia", null, "Poland", 54.5, 18.5);
 
         //then
+        verify(locationRepository).save(locationArgumentCaptor.capture());
         assertThat(location.getCity()).isEqualTo("Gdynia");
         assertThat(location.getRegion()).isEqualTo(null);
         assertThat(location.getCountry()).isEqualTo("Poland");
