@@ -65,7 +65,6 @@ public class LocationServiceTests {
         Location location = locationService.createLocation("Gdynia", " ", "Poland", 54.5, 18.5);
 
         //then
-
         assertThat(location.getCity()).isEqualTo("Gdynia");
         assertThat(location.getRegion()).isEqualTo(" ");
         assertThat(location.getCountry()).isEqualTo("Poland");
