@@ -66,7 +66,7 @@ public class LocationServiceTests {
 
         //then
         assertThat(location.getCity()).isEqualTo("Gdynia");
-        assertThat(location.getRegion()).isEqualTo(" ");
+        assertThat(location.getRegion()).isNull();
         assertThat(location.getCountry()).isEqualTo("Poland");
         assertThat(location.getLatitude()).isEqualTo(54.5);
         assertThat(location.getLongitude()).isEqualTo(18.5);
@@ -90,7 +90,7 @@ public class LocationServiceTests {
         //then
         verify(locationRepository).save(locationArgumentCaptor.capture());
         assertThat(location.getCity()).isEqualTo("Gdynia");
-        assertThat(location.getRegion()).isEqualTo(null);
+        assertThat(location.getRegion()).isNull();
         assertThat(location.getCountry()).isEqualTo("Poland");
         assertThat(location.getLatitude()).isEqualTo(54.5);
         assertThat(location.getLongitude()).isEqualTo(18.5);
