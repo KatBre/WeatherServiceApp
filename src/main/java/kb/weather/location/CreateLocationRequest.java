@@ -14,7 +14,7 @@ public class CreateLocationRequest {
     @NotBlank(message = "Empty city not accepted")
     private String city;
     private String region;
-    @NotEmpty(message = "Empty country not accepted")
+    @NotBlank(message = "Empty country not accepted")
     private String country;
     @Min(value = -90, message = "Latitude out of range. Accepted value within the range -90 to 90.")
     @Max(value = 90, message = "Latitude out of range. Accepted value within the range -90 to 90.")
