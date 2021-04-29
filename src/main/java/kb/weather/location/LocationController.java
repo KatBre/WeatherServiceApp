@@ -8,16 +8,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
-@Validated
 public class LocationController {
 
     private final LocationService locationService;
     private final LocationMapper locationMapper;
 
     @PostMapping("/location")
-    ResponseEntity<NewLocationResponse> postLocation(@RequestBody CreateLocationRequest request) {
+    ResponseEntity<NewLocationResponse> postLocation(@RequestBody @Valid CreateLocationRequest request) {
         Location location = locationService.createLocation(
                 request.getCity(),
                 request.getRegion(),
